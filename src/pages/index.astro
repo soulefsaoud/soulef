@@ -1,11 +1,178 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+interface Props {
+	name?: string
+	title?: string
+	description?: string
+	available?: boolean
+	stack?: string[]
+	githubUrl?: string
+	linkedinUrl?: string
+}
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const {
+	name = "Votre Nom",
+	title = "Développeur fullstack",
+	description = "Je conçois et développe des interfaces web soignées, rapides et accessibles. Passionné par la qualité du code et l'expérience utilisateur.",
+	available = true,
+	stack = ["TypeScript", "React", "Astro", "Node.js", "PostgreSQL", "Docker"],
+	githubUrl = "https://github.com/soulef",
+	linkedinUrl = "https://linkedin.com/in/votre-profil",
+} = Astro.props
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<section class="hero">
+	<p class="hero-tag">{title}</p>
+
+	<h1 class="hero-name">
+		{name},<br />
+		<em>architecte du web.</em>
+	</h1>
+
+	<p class="hero-desc">{description}</p>
+
+	<div class="hero-links">
+		<a href="#projets" class="btn-primary">Voir mes projets</a>
+		<a href={githubUrl} target="_blank" rel="noopener" class="btn-ghost">GitHub</a>
+		<a href={linkedinUrl} target="_blank" rel="noopener" class="btn-ghost">LinkedIn</a>
+	</div>
+
+	{available && (
+		<div class="hero-avail">
+			<span class="dot" />
+			Disponible pour des missions freelance
+		</div>
+	)}
+
+	<div class="hero-stack">
+		{stack.map((tech) => (
+			<span class="stack-pill">{tech}</span>
+		))}
+	</div>
+</section>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
+
+	.hero {
+		padding: 6rem 0 4rem;
+		max-width: 680px;
+	}
+
+	.hero-tag {
+		font-family: 'DM Mono', monospace;
+		font-size: 0.75rem;
+		font-weight: 500;
+		color: #888;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		margin-bottom: 1.5rem;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.hero-tag::before {
+		content: '';
+		display: inline-block;
+		width: 20px;
+		height: 1px;
+		background: currentColor;
+	}
+
+	.hero-name {
+		font-family: 'DM Serif Display', serif;
+		font-size: clamp(2.8rem, 6vw, 4.5rem);
+		font-weight: 400;
+		line-height: 1.05;
+		color: #111;
+		margin: 0 0 0.5rem;
+	}
+
+	.hero-name em {
+		font-style: italic;
+		color: #666;
+	}
+
+	.hero-desc {
+		font-size: 1rem;
+		color: #555;
+		line-height: 1.75;
+		max-width: 480px;
+		margin: 1.5rem 0 2.5rem;
+	}
+
+	.hero-links {
+		display: flex;
+		gap: 12px;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.btn-primary {
+		font-size: 0.8125rem;
+		font-weight: 500;
+		padding: 10px 22px;
+		border-radius: 999px;
+		border: 1px solid #111;
+		background: #111;
+		color: #fff;
+		text-decoration: none;
+		transition: opacity 0.15s;
+	}
+
+	.btn-primary:hover {
+		opacity: 0.8;
+	}
+
+	.btn-ghost {
+		font-size: 0.8125rem;
+		font-weight: 500;
+		padding: 10px 22px;
+		border-radius: 999px;
+		border: 1px solid #e0e0e0;
+		background: transparent;
+		color: #555;
+		text-decoration: none;
+		transition: background 0.15s;
+	}
+
+	.btn-ghost:hover {
+		background: #f5f5f5;
+	}
+
+	.hero-avail {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-top: 2rem;
+		font-size: 0.8rem;
+		color: #888;
+	}
+
+	.dot {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		background: #3B6D11;
+		flex-shrink: 0;
+	}
+
+	.hero-stack {
+		display: flex;
+		gap: 8px;
+		flex-wrap: wrap;
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid #eee;
+	}
+
+	.stack-pill {
+		font-family: 'DM Mono', monospace;
+		font-size: 0.6875rem;
+		color: #888;
+		background: #f5f5f5;
+		border: 1px solid #e8e8e8;
+		padding: 4px 10px;
+		border-radius: 4px;
+	}
+</style>
