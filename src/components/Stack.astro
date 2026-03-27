@@ -1,13 +1,12 @@
 ---
----
 interface Category {
     label: string
     items: { name: string; color?: string }[]
-    }
+}
 
 interface Props {
     categories?: Category[]
-    }
+}
 
 const { categories = [
     {
@@ -17,8 +16,8 @@ const { categories = [
             { name: "JavaScript", color: "#f7df1e" },
             { name: "Python",     color: "#3572a5" },
             { name: "Java",       color: "#b07219" },
-            ],
-        },
+        ],
+    },
     {
         label: "Frontend",
         items: [
@@ -26,8 +25,8 @@ const { categories = [
             { name: "Astro" },
             { name: "Next.js" },
             { name: "Tailwind" },
-            ],
-        },
+        ],
+    },
     {
         label: "Backend",
         items: [
@@ -36,8 +35,8 @@ const { categories = [
             { name: "Fastify" },
             { name: "PostgreSQL" },
             { name: "Redis" },
-            ],
-        },
+        ],
+    },
     {
         label: "DevOps",
         items: [
@@ -45,9 +44,9 @@ const { categories = [
             { name: "GitHub Actions" },
             { name: "Vercel" },
             { name: "AWS" },
-            ],
-        },
-    ] } = Astro.props
+        ],
+    },
+] } = Astro.props
 ---
 
 <section class="section" id="stack">
@@ -153,4 +152,3 @@ const { categories = [
         flex-shrink: 0;
     }
 </style>
----
