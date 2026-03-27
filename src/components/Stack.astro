@@ -1,0 +1,156 @@
+---
+---
+interface Category {
+    label: string
+    items: { name: string; color?: string }[]
+    }
+
+interface Props {
+    categories?: Category[]
+    }
+
+const { categories = [
+    {
+        label: "Langages",
+        items: [
+            { name: "TypeScript", color: "#3178c6" },
+            { name: "JavaScript", color: "#f7df1e" },
+            { name: "Python",     color: "#3572a5" },
+            { name: "Java",       color: "#b07219" },
+            ],
+        },
+    {
+        label: "Frontend",
+        items: [
+            { name: "React" },
+            { name: "Astro" },
+            { name: "Next.js" },
+            { name: "Tailwind" },
+            ],
+        },
+    {
+        label: "Backend",
+        items: [
+            { name: "Node.js" },
+            { name: "Express" },
+            { name: "Fastify" },
+            { name: "PostgreSQL" },
+            { name: "Redis" },
+            ],
+        },
+    {
+        label: "DevOps",
+        items: [
+            { name: "Docker" },
+            { name: "GitHub Actions" },
+            { name: "Vercel" },
+            { name: "AWS" },
+            ],
+        },
+    ] } = Astro.props
+---
+
+<section class="section" id="stack">
+    <p class="section-label">Stack technique</p>
+    <div class="categories">
+        {categories.map((cat) => (
+                <div class="cat">
+                    <span class="cat-label">{cat.label}</span>
+                    <div class="cat-items">
+                        {cat.items.map((item) => (
+                                <span class="item">
+              {item.color && (
+                      <span class="dot" style={`background:${item.color}`} />
+              )}
+                                    {item.name}
+            </span>
+                        ))}
+                    </div>
+                </div>
+        ))}
+    </div>
+</section>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap');
+
+    .section {
+        padding: 4rem 0;
+    }
+
+    .section-label {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.75rem;
+        color: #888;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 2rem;
+    }
+
+    .section-label::before {
+        content: '';
+        width: 20px;
+        height: 1px;
+        background: currentColor;
+        display: inline-block;
+    }
+
+    .categories {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .cat {
+        display: grid;
+        grid-template-columns: 140px 1fr;
+        border-bottom: 1px solid #eee;
+    }
+
+    .cat:last-child {
+        border-bottom: none;
+    }
+
+    .cat-label {
+        font-family: 'DM Mono', monospace;
+        font-size: 0.6875rem;
+        color: #aaa;
+        padding: 1.1rem 1.25rem;
+        border-right: 1px solid #eee;
+        display: flex;
+        align-items: center;
+    }
+
+    .cat-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 1rem 1.25rem;
+        align-items: center;
+    }
+
+    .item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8125rem;
+        color: #111;
+        background: #f5f5f5;
+        border: 1px solid #e8e8e8;
+        padding: 5px 12px;
+        border-radius: 6px;
+    }
+
+    .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+</style>
+---
