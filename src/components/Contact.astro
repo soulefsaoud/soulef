@@ -1,16 +1,15 @@
 ---
----
 interface Props {
     email?: string
     githubUrl?: string
     linkedinUrl?: string
-    }
+}
 
 const {
     email = "votre@email.com",
     githubUrl = "https://github.com/votre-username",
     linkedinUrl = "https://linkedin.com/in/votre-profil",
-    } = Astro.props
+} = Astro.props
 ---
 
 <section class="section" id="contact">
@@ -235,4 +234,3 @@ const {
         opacity: 0.8;
     }
 </style>
----
